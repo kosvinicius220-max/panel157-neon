@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#070b12">
+<title>Panel157 Neon</title>
+<style>
+:root{--bg:#070b12;--panel:#101927;--neon:#00dcff;--text:#e8faff;--muted:#8296a9}
+*{box-sizing:border-box}
+body{margin:0;padding:14px;background:radial-gradient(ellipse at top,#102b42,var(--bg) 65%);color:var(--text);font-family:Arial,sans-serif}
+.app{max-width:480px;margin:auto;border:1px solid #17445b;border-radius:18px;overflow:hidden;background:rgba(7,13,23,.97);box-shadow:0 0 25px #00cfff15}
+header{text-align:center;padding:22px 12px;background:linear-gradient(120deg,#101c2c,#082b3c);border-bottom:1px solid #14516a}
+.logo{color:var(--neon);font-size:27px;font-weight:900;letter-spacing:2px;text-shadow:0 0 15px #00dcff77}
+.subtitle{color:var(--muted);font-size:10px;letter-spacing:3px;margin-top:7px}
+.status{display:inline-block;margin-top:13px;padding:6px 12px;border-radius:20px;color:#65ffb0;background:#12372b;font-size:11px}
+.tabs{display:flex;gap:7px;padding:12px;background:#0b121e}
+.tab{flex:1;padding:11px 3px;border:1px solid #263b4d;border-radius:8px;background:#111c2a;color:#94aabd;font-weight:bold}
+.tab.active{color:var(--neon);border-color:var(--neon);background:#0c2938}
+main{padding:15px}.section-title{color:var(--neon);font-size:12px;font-weight:bold;letter-spacing:2px;margin:7px 0 13px}
+.option{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 12px;margin-bottom:9px;border:1px solid #1b2b3d;border-radius:10px;background:var(--panel)}
+.option strong{font-size:13px}.option small{display:block;color:var(--muted);margin-top:5px;font-size:11px}
+input[type=checkbox]{appearance:none;width:42px;height:23px;border-radius:20px;background:#263545;position:relative;flex-shrink:0;margin:0}
+input[type=checkbox]::after{content:"";position:absolute;width:17px;height:17px;top:3px;left:3px;border-radius:50%;background:#94a3b8;transition:.2s}
+input[type=checkbox]:checked{background:#08758c;box-shadow:0 0 10px #00dcff44}
+input[type=checkbox]:checked::after{left:22px;background:var(--neon)}
+.preview{background:#080e17;border:1px solid #193448;border-radius:12px;padding:12px;margin-bottom:15px}
+.preview-label{color:var(--muted);font-size:10px;letter-spacing:2px;margin-bottom:12px}
+.scene{position:relative;height:245px;overflow:hidden;background:linear-gradient(#10233333 1px,transparent 1px),linear-gradient(90deg,#10233333 1px,transparent 1px),radial-gradient(ellipse,#102738,#070c14 75%);background-size:22px 22px,22px 22px,auto;border-radius:8px}
+.player{position:absolute;left:50%;top:30px;transform:translateX(-50%);width:86px;height:174px}
+.box-esp{position:absolute;inset:0;border:2px solid var(--neon);box-shadow:0 0 10px #00dcff55}
+.head{position:absolute;top:19px;left:30px;width:26px;height:26px;background:#d1e6ed;border-radius:50%}
+.body-shape{position:absolute;top:49px;left:22px;width:42px;height:69px;border-radius:12px 12px 5px 5px;background:linear-gradient(90deg,#365d72,#b1d6df,#365d72)}
+.legs{position:absolute;top:115px;left:28px;width:30px;height:43px;background:#253b50;border-radius:4px}
+.health{position:absolute;left:-9px;top:0;height:174px;width:5px;background:#263443}
+.health-fill{position:absolute;bottom:0;width:100%;height:75%;background:#20f28a;box-shadow:0 0 7px #20f28a66}
+.player-name{position:absolute;top:-19px;width:100%;text-align:center;color:var(--neon);font-size:10px;font-weight:bold}
+.hp-label{position:absolute;right:-40px;top:0;color:#20f28a;font-size:10px}
+.range{color:var(--muted);font-size:11px;text-align:center;margin-top:12px}
+input[type=range]{width:100%;accent-color:var(--neon);max-width:145px}
+select{max-width:145px;background:#08111c;color:var(--text);border:1px solid #294154;border-radius:7px;padding:9px}
+button.action{width:100%;padding:13px;color:var(--neon);background:#0c2635;border:1px solid #087e9b;border-radius:9px;font-weight:bold;margin-top:9px}
+button:focus-visible{outline:2px solid var(--neon);outline-offset:2px}
+button.action:active{background:#164257}.hidden{display:none!important}
+footer{padding:13px;text-align:center;color:#667c8d;font-size:10px;border-top:1px solid #1b2b3d}
+.note{font-size:11px;line-height:1.5;color:#8296a9;margin:10px 2px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">PANEL157</div><div class="subtitle">NEON CONTROL INTERFACE</div><div class="status">● DEMONSTRAÇÃO LOCAL</div></header>
+<nav class="tabs" aria-label="Abas">
+<button class="tab active" data-tab="visual" type="button">VISUAL</button>
+<button class="tab" data-tab="config" type="button">CONFIG</button>
+<button class="tab" data-tab="money" type="button">DINHEIRO</button>
+<button class="tab" data-tab="info" type="button">INFO</button>
+</nav>
+<main>
+<section id="visual">
+<div class="section-title">VISUAL ESP</div>
+<div class="preview"><div class="preview-label">PLAYER PREVIEW / SIMULADO</div>
+<div class="scene"><div class="player" id="player">
+<div class="player-name" id="playerName">PLAYER DEMO</div><div class="box-esp" id="espBox"></div>
+<div class="health" id="healthBar"><div class="health-fill" id="healthFill"></div></div>
+<div class="hp-label" id="hpLabel">75 HP</div><div class="head"></div><div class="body-shape"></div><div class="legs"></div>
+</div></div><div class="range">PERSONAGEM FICTÍCIO • TESTE VISUAL</div></div>
+<div class="option"><div><strong>ESP ativado</strong><small>Exibir prévia simulada</small></div><input id="espToggle" type="checkbox" checked aria-label="ESP ativado"></div>
+<div class="option"><div><strong>Caixa ESP</strong><small>Contorno do personagem</small></div><input id="boxToggle" type="checkbox" checked aria-label="Caixa ESP"></div>
+<div class="option"><div><strong>Barra de vida</strong><small>Indicador lateral</small></div><input id="healthToggle" type="checkbox" checked aria-label="Barra de vida"></div>
+<div class="option"><div><strong>Nome do jogador</strong><small>Rótulo de demonstração</small></div><input id="nameToggle" type="checkbox" checked aria-label="Nome do jogador"></div>
+</section>
+<section id="config" class="hidden">
+<div class="section-title">CONFIGURAÇÕES VISUAIS</div>
+<div class="option"><div><strong>Vida simulada</strong><small id="hpValue">75%</small></div><input id="hpRange" type="range" min="0" max="100" value="75" aria-label="Vida simulada"></div>
+<div class="option"><div><strong>Espessura da caixa</strong><small id="widthValue">2 px</small></div><input id="widthRange" type="range" min="1" max="5" value="2" aria-label="Espessura da caixa"></div>
+<div class="option"><div><strong>Cor do ESP</strong><small>Cor da caixa</small></div><select id="colorSelect" aria-label="Cor do ESP"><option value="#00dcff">Azul neon</option><option value="#39ff14">Verde neon</option><option value="#ff3df2">Rosa neon</option><option value="#ffffff">Branco</option></select></div>
+<button class="action" id="resetButton" type="button">RESTAURAR PADRÕES</button>
+<p class="note">As opções alteram somente esta demonstração visual.</p>
+</section>
+<section id="money" class="hidden">
+<div class="section-title">DINHEIRO EDITÁVEL • DEMONSTRAÇÃO</div>
+<div class="preview">
+  <div class="preview-label">SALDO FICTÍCIO / LOCAL</div>
+  <div id="moneyDisplay" style="font-size:30px;font-weight:900;color:#20f28a;text-align:center;padding:18px 4px;text-shadow:0 0 14px #20f28a55">$ 1.000.000</div>
+  <p class="note" style="text-align:center">Este valor existe apenas neste painel e não altera o saldo do jogo.</p>
+</div>
+<div class="option" style="align-items:flex-start;flex-direction:column">
+  <strong>Definir saldo simulado</strong>
+  <small>Digite um valor para atualizar a demonstração</small>
+  <input id="moneyInput" type="number" min="0" max="999999999" step="1" value="1000000" inputmode="numeric" aria-label="Saldo fictício" style="width:100%;margin-top:8px">
+</div>
+<button class="action" id="moneyApply" type="button">APLICAR VALOR FICTÍCIO</button>
+<button class="action" id="moneyReset" type="button">RESTAURAR $ 1.000.000</button>
+<p class="note">Modo offline: o saldo é apenas visual, não se conecta ao 157 Online e não modifica moedas, contas ou partidas.</p>
+</section>
+<section id="info" class="hidden">
+<div class="section-title">INFORMAÇÕES</div>
+<div class="option"><div><strong>Versão</strong><small>Panel157 Neon 1.2</small></div></div>
+<div class="option"><div><strong>Plataforma</strong><small>HTML / CSS / JavaScript</small></div></div>
+<div class="option"><div><strong>Modo</strong><small>Simulação local, sem conexão com o jogo</small></div></div>
+<p class="note">Este painel é apenas uma interface demonstrativa. Não lê dados do jogo nem altera contas, partidas ou moedas.</p>
+</section>
+</main>
+<footer>PANEL157 NEON • INTERFACE DE DEMONSTRAÇÃO</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const tabs = document.querySelectorAll(".tab");
+  const sections = ["visual","config","money","info"];
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab");
+      tabs.forEach(t => t.classList.toggle("active", t === tab));
+      sections.forEach(id => $(id).classList.toggle("hidden", id !== target));
+    });
+  });
+  function formatMoney(value){
+    return "$ " + Math.max(0, Math.floor(value)).toLocaleString("pt-BR");
+  }
+  function applyDemoMoney(){
+    const input = $("moneyInput");
+    const value = Number(input.value);
+    if (!Number.isFinite(value) || input.value.trim() === "") {
+      input.value = "0";
+    }
+    const safeValue = Math.min(999999999, Math.max(0, Math.floor(Number(input.value) || 0)));
+    input.value = String(safeValue);
+    $("moneyDisplay").textContent = formatMoney(safeValue);
+  }
+  $("moneyApply").addEventListener("click", applyDemoMoney);
+  $("moneyReset").addEventListener("click", () => {
+    $("moneyInput").value = "1000000";
+    applyDemoMoney();
+  });
+  $("moneyInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") applyDemoMoney();
+  });
+  function updateVisibility(){
+    const on = $("espToggle").checked;
+    $("player").style.display = on ? "block" : "none";
+    $("espBox").style.display = $("boxToggle").checked ? "block" : "none";
+    $("healthBar").style.display = $("healthToggle").checked ? "block" : "none";
+    $("hpLabel").style.display = $("healthToggle").checked ? "block" : "none";
+    $("playerName").style.display = $("nameToggle").checked ? "block" : "none";
+  }
+  ["espToggle","boxToggle","healthToggle","nameToggle"].forEach(id => $(id).addEventListener("change", updateVisibility));
+  $("hpRange").addEventListener("input", () => {
+    const hp = Number($("hpRange").value);
+    $("hpValue").textContent = hp + "%";
+    $("healthFill").style.height = hp + "%";
+    $("hpLabel").textContent = hp + " HP";
+    $("healthFill").style.background = hp > 60 ? "#20f28a" : hp > 25 ? "#ffd166" : "#ff5263";
+    $("hpLabel").style.color = hp > 60 ? "#20f28a" : hp > 25 ? "#ffd166" : "#ff5263";
+  });
+  $("widthRange").addEventListener("input", () => {
+    const width = Number($("widthRange").value);
+    $("widthValue").textContent = width + " px";
+    $("espBox").style.borderWidth = width + "px";
+  });
+  $("colorSelect").addEventListener("change", () => {
+    const color = $("colorSelect").value;
+    document.documentElement.style.setProperty("--neon", color);
+    $("espBox").style.borderColor = color;
+    $("espBox").style.boxShadow = "0 0 10px " + color + "66";
+  });
+  $("resetButton").addEventListener("click", () => {
+    $("espToggle").checked = true; $("boxToggle").checked = true;
+    $("healthToggle").checked = true; $("nameToggle").checked = true;
+    $("hpRange").value = 75; $("widthRange").value = 2; $("colorSelect").value = "#00dcff";
+    document.documentElement.style.setProperty("--neon", "#00dcff");
+    $("espBox").style.borderColor = "#00dcff"; $("espBox").style.boxShadow = "0 0 10px #00dcff66";
+    $("espBox").style.borderWidth = "2px"; $("widthValue").textContent = "2 px";
+    $("hpValue").textContent = "75%"; $("healthFill").style.height = "75%";
+    $("healthFill").style.background = "#20f28a"; $("hpLabel").textContent = "75 HP"; $("hpLabel").style.color = "#20f28a";
+    updateVisibility();
+  });
+  updateVisibility();
+})();
+</script>
+</body>
+</html>
