@@ -14,21 +14,21 @@ jobs:
       - name: Baixar arquivos do projeto
         uses: actions/checkout@v4
 
-      - name: Configurar Java
+       name: Configurar Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Configurar Gradle
+       name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
 
-      - name: Compilar APK
+       name: Compilar APK
         run: gradle assembleDebug
 
-      - name: Disponibilizar APK
+       name: Disponibilizar APK
         uses: actions/upload-artifact@v4
         with:
           name: Panel157-APK
